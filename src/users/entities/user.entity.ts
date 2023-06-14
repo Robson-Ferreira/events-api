@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { EventsStatusUsers } from '../enums/users.enum';
 
 @Entity({ name: 'users' })
-export class User {
+export class UserRepository {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

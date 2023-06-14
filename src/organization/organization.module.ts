@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { OrganizationService } from './organization.service';
 import { OrganizationController } from './organization.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Organization } from './entities/organization.entity';
+import { OrganizationsRepository } from './entities/organizations.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Organization])],
+  imports: [TypeOrmModule.forFeature([OrganizationsRepository])],
   controllers: [OrganizationController],
   providers: [OrganizationService],
 })

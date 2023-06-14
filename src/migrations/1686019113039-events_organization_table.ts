@@ -6,7 +6,7 @@ export class EventsOrganizationTable1686019113039
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'organization',
+        name: 'organizations',
         columns: [
           {
             name: 'id',
@@ -21,7 +21,8 @@ export class EventsOrganizationTable1686019113039
           },
           {
             name: 'organization_type',
-            type: 'varchar(200)',
+            type: 'enum',
+            enum: ['PF', 'PJ'],
           },
           {
             name: 'responsible_name',
@@ -29,7 +30,7 @@ export class EventsOrganizationTable1686019113039
           },
           {
             name: 'logo',
-            type: 'varchar(200)',
+            type: 'text',
           },
           {
             name: 'created_by',
@@ -51,6 +52,6 @@ export class EventsOrganizationTable1686019113039
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('organization');
+    await queryRunner.dropTable('organizations');
   }
 }
