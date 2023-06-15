@@ -7,11 +7,11 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { EventsOrganizationType } from '../enums/organization.enum';
-import { User } from '../../users/entities/user.entity';
+import { EventsOrganizationsType } from '../enums/organizations.enum';
+import { UserRepository } from '../../users/entities/user.entity';
 
-@Entity({ name: 'organization' })
-export class Organization {
+@Entity({ name: 'organizations' })
+export class OrganizationsRepository {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -21,9 +21,9 @@ export class Organization {
   @Column({
     name: 'organization_type',
     type: 'enum',
-    enum: EventsOrganizationType,
+    enum: EventsOrganizationsType,
   })
-  organization_type: EventsOrganizationType;
+  organization_type: EventsOrganizationsType;
 
   @Column({ name: 'responsible_name' })
   responsible_name: string;
@@ -31,9 +31,9 @@ export class Organization {
   @Column({ name: 'logo' })
   logo: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => UserRepository)
   @JoinColumn()
-  created_by: User;
+  created_by: UserRepository;
 
   @CreateDateColumn({ name: 'created_at' })
   created_at: Date;

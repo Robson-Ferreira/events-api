@@ -34,7 +34,8 @@ export default class EventsUsersTable1686020854720
           },
           {
             name: 'role_id',
-            type: 'varchar(200)',
+            type: 'enum',
+            enum: ['admin', 'organization_employer', 'organization_admin'],
           },
         ],
       }),
