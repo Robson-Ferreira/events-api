@@ -25,17 +25,40 @@ export default class EventsUsersTable1686020854720
             isUnique: true,
           },
           {
-            name: 'password',
+            name: 'email',
             type: 'varchar(200)',
+          },
+          {
+            name: 'email_verified',
+            type: 'boolean',
+          },
+          {
+            name: 'picture',
+            type: 'text',
           },
           {
             name: 'externalId',
             type: 'varchar(200)',
           },
           {
-            name: 'role_id',
+            name: 'userRoles',
             type: 'enum',
             enum: ['admin', 'organization_employer', 'organization_admin'],
+          },
+          {
+            name: 'created_by',
+            type: 'varchar(200)',
+            isNullable: true,
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
           },
         ],
       }),

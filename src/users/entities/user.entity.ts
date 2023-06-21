@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  UpdateDateColumn,
+  CreateDateColumn,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 import { EventsStatusUsers } from '../enums/users.enum';
 
 @Entity({ name: 'users' })
@@ -12,12 +20,28 @@ export class UserRepository {
   @Column({ name: 'username', unique: true })
   username: string;
 
-  @Column({ name: 'password' })
-  password: string;
+  @Column({ name: 'email' })
+  email: string;
 
-  @Column({ name: 'externalId' })
-  externalId: string;
+  @Column({ name: 'email_verified' })
+  email_verified: boolean;
 
-  @Column({ name: 'role_id', type: 'enum', enum: EventsStatusUsers })
-  role_id: EventsStatusUsers;
+  @Column({ name: 'picture' })
+  picture: string;
+
+  @Column({ name: 'externalId ' })
+  sub: string;
+
+  @Column({ name: 'userRoles', type: 'enum', enum: EventsStatusUsers })
+  userRoles: EventsStatusUsers;
+
+  @ManyToOne(() => UserRepository, (UserRepository) => UserRepository.id)
+  @JoinColumn({ name: 'created_by' })
+  created_by: UserRepository;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updated_at: Date;
+
+  @CreateDateColumn({ name: 'created_at' })
+  created_at: Date;
 }

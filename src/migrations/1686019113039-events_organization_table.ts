@@ -35,6 +35,7 @@ export class EventsOrganizationTable1686019113039
           {
             name: 'created_by',
             type: 'varchar(200)',
+            isNullable: true,
           },
           {
             name: 'created_at',
