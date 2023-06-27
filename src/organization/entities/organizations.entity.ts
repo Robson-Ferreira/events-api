@@ -32,7 +32,7 @@ export class OrganizationsRepository {
   logo: string;
 
   @OneToOne(() => UserRepository)
-  @JoinColumn()
+  @JoinColumn({ name: 'created_by' })
   created_by: UserRepository;
 
   @CreateDateColumn({ name: 'created_at' })
