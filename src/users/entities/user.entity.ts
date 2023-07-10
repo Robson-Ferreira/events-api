@@ -7,7 +7,7 @@ import {
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
-import { EventsStatusUsers } from '../enums/users.enum';
+import { RolesUsers } from '../enums/roles-users';
 
 @Entity({ name: 'users' })
 export class UserRepository {
@@ -32,8 +32,8 @@ export class UserRepository {
   @Column({ name: 'externalId ' })
   sub: string;
 
-  @Column({ name: 'userRoles', type: 'enum', enum: EventsStatusUsers })
-  userRoles: EventsStatusUsers;
+  @Column({ name: 'userRoles', type: 'enum', enum: RolesUsers })
+  userRoles: RolesUsers;
 
   @ManyToOne(() => UserRepository, (UserRepository) => UserRepository.id)
   @JoinColumn({ name: 'created_by' })

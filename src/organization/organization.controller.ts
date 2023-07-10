@@ -1,23 +1,18 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, SetMetadata } from '@nestjs/common';
 import { OrganizationService } from './organization.service';
 import { OrganizationsRequestDto } from './dto/organization-request.dto';
+import { AuthGuard } from '../config/guards/auth/auth.guard';
+import { RolesGuard } from '../config/guards/roles';
+import { RolesUsers } from 'src/users/enums/roles-users';
 
-@Controller('organization')
+@Controller('organizations')
 export class OrganizationController {
   constructor(private organizationService: OrganizationService) {}
 
-  @Post('/')
+  @Post('/create')
+  @UseGuards(AuthGuard, RolesGuard)
+  @SetMetadata('roles', [RolesUsers.ADMIN])
   async create(@Body() organizationDto: OrganizationsRequestDto) {
     return this.organizationService.create(organizationDto);
-  }
-
-  @Get('/')
-  async find() {
-    return this.organizationService.findAll();
-  }
-
-  @Get('/:id')
-  async findById(@Param('id') id: string) {
-    return this.organizationService.findById(id);
   }
 }
