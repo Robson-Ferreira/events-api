@@ -1,5 +1,11 @@
-import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { EventsStatusUsers } from '../enums/users.enum';
+import {
+  IsBoolean,
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+} from 'class-validator';
+import { RolesUsers } from '../enums/roles-users';
 
 export class UserRequestDto {
   @IsString()
@@ -10,15 +16,23 @@ export class UserRequestDto {
   @IsNotEmpty()
   username: string;
 
-  @IsString()
+  @IsEmail()
   @IsNotEmpty()
-  password: string;
+  email: string;
+
+  @IsBoolean()
+  @IsNotEmpty()
+  email_verified: boolean;
 
   @IsString()
   @IsNotEmpty()
-  externalId: string;
+  picture: string;
 
-  @IsEnum(EventsStatusUsers)
+  @IsString()
   @IsNotEmpty()
-  role_id: EventsStatusUsers;
+  sub: string;
+
+  @IsEnum(RolesUsers)
+  @IsNotEmpty()
+  userRoles: RolesUsers;
 }

@@ -4,10 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
-import { EventsOrganizationsType } from '../enums/organizations.enum';
+import { OrganizationsType } from '../enums/organizations.enum';
 import { UserRepository } from '../../users/entities/user.entity';
 
 @Entity({ name: 'organizations' })
@@ -21,9 +21,9 @@ export class OrganizationsRepository {
   @Column({
     name: 'organization_type',
     type: 'enum',
-    enum: EventsOrganizationsType,
+    enum: OrganizationsType,
   })
-  organization_type: EventsOrganizationsType;
+  organization_type: OrganizationsType;
 
   @Column({ name: 'responsible_name' })
   responsible_name: string;
@@ -31,8 +31,8 @@ export class OrganizationsRepository {
   @Column({ name: 'logo' })
   logo: string;
 
-  @OneToOne(() => UserRepository)
-  @JoinColumn({ name: 'created_by' })
+  @ManyToOne(() => UserRepository, (userRepository) => userRepository.id)
+  @JoinColumn({ name: 'id' })
   created_by: UserRepository;
 
   @CreateDateColumn({ name: 'created_at' })

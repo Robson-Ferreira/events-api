@@ -1,4 +1,4 @@
-export enum EventsOrganizationsType {
+export enum OrganizationsType {
   PF = 'PF',
   PJ = 'PJ',
 }

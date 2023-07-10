@@ -3,11 +3,13 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrganizationModule } from './organization/organization.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './config/guards/auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: ['.env.development.local'],
+      isGlobal: true,
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -22,6 +24,7 @@ import { UsersModule } from './users/users.module';
     }),
     OrganizationModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
