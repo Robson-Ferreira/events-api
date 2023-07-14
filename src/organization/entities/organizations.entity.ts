@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { OrganizationsType } from '../enums/organizations.enum';
 import { UserRepository } from '../../users/entities/user.entity';
-
+import { OrganizationStatusEnum } from '../enums/status.enum';
 @Entity({ name: 'organizations' })
 export class OrganizationsRepository {
   @PrimaryGeneratedColumn('uuid')
@@ -40,4 +40,11 @@ export class OrganizationsRepository {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updated_at: Date;
+
+  @Column({
+    default: OrganizationStatusEnum.ACTIVED,
+    type: 'enum',
+    enum: OrganizationStatusEnum,
+  })
+  status: OrganizationStatusEnum;
 }

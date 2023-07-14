@@ -1,10 +1,10 @@
 import * as jwksRsa from 'jwks-rsa';
 import * as jwt from 'jsonwebtoken';
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '.env.development.local' });
 
-const jwksClient =
-  'https://dev-dv3m37h2cowxryg3.us.auth0.com/.well-known/jwks.json';
 export const client = jwksRsa({
-  jwksUri: jwksClient,
+  jwksUri: process.env.JWKS_URI,
 });
 
 export async function verifyToken(token: string): Promise<any> {

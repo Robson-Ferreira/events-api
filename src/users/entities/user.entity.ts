@@ -29,11 +29,11 @@ export class UserRepository {
   @Column({ name: 'picture' })
   picture: string;
 
-  @Column({ name: 'externalId ' })
-  sub: string;
+  @Column({ name: 'external_id' })
+  external_id: string;
 
-  @Column({ name: 'userRoles', type: 'enum', enum: RolesUsers })
-  userRoles: RolesUsers;
+  @Column({ name: 'roles_id', type: 'enum', enum: RolesUsers })
+  roles_id: RolesUsers;
 
   @ManyToOne(() => UserRepository, (UserRepository) => UserRepository.id)
   @JoinColumn({ name: 'created_by' })
